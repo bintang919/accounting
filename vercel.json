@@ -3,13 +3,7 @@
   "builds": [
     {
       "src": "api/index.php",
-      "use": "vercel-php@0.6.0",
-      "config": {
-        "phpVersion": "8.2",
-        "installDependencies": [
-          "libssl-dev"
-        ]
-      }
+      "use": "vercel-php@1.0.0"
     }
   ],
   "routes": [
