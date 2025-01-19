@@ -1,0 +1,37 @@
+version: '3.8'
+
+services:
+  app:
+    image: php:8.1-apache
+    container_name: php-app
+    ports:
+      - "8080:80"
+    volumes:
+      - ./src:/var/www/html
+      - ./php.ini:/usr/local/etc/php/php.ini # Custom PHP configuration (opsional)
+    networks:
+      - app-network
+    depends_on:
+      - db
+
+  db:
+    image: mysql:8.0
+    container_name: mysql-db
+    ports:
+      - "3306:3306"
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: posly
+      MYSQL_USER: root
+      MYSQL_PASSWORD: accounting00
+    volumes:
+      - db-data:/var/lib/mysql
+    networks:
+      - app-network
+
+networks:
+  app-network:
+    driver: bridge
+
+volumes:
+  db-data:
